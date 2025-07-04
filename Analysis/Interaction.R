@@ -5,28 +5,19 @@
 
 library(pROC)
 
-# top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)
-# top_2019 <- read.csv("CleanedData(Num)/clean_2019n", header = TRUE)
-# top_2020 <- read.csv("CleanedData(Num)/clean_2020n", header = TRUE)
-# top_2021 <- read.csv("CleanedData(Num)/clean_2021n", header = TRUE)
-# top_2022 <- read.csv("CleanedData(Num)/clean_2022n", header = TRUE)
-# top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
-
-top_2018 <- read.csv("RaceData/clean_2018", header = TRUE)
-top_2019 <- read.csv("RaceData/clean_2019", header = TRUE)
-top_2020 <- read.csv("RaceData/clean_2020", header = TRUE)
-top_2021 <- read.csv("RaceData/clean_2021", header = TRUE)
-top_2022 <- read.csv("RaceData/clean_2022", header = TRUE)
-top_2023 <- read.csv("RaceData/clean_2023", header = TRUE)
-
-
+top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)
+top_2019 <- read.csv("CleanedData(Num)/clean_2019n", header = TRUE)
+top_2020 <- read.csv("CleanedData(Num)/clean_2020n", header = TRUE)
+top_2021 <- read.csv("CleanedData(Num)/clean_2021n", header = TRUE)
+top_2022 <- read.csv("CleanedData(Num)/clean_2022n", header = TRUE)
+top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
 
 
 fit_glm <- function(df, year = "Unknown") {
   factored_df <- within (df, {BULLIED = as.factor(BULLIED)
                               MAKEFRIEND = as.factor(MAKEFRIEND)})
   glmodel <- glm(BULLIED ~ MAKEFRIEND + SEX + INCOME + ADHD_MEDICATION +
-                   ADHD_BT,
+                   ADHD_BT + MAKEFRIEND * ADHD_SEVERITY,
                  family = binomial, data = factored_df)
 
 coefs <- summary(glmodel)$coefficients

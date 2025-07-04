@@ -12,7 +12,7 @@ top_2023 = "NSCHData/2023/nsch_2023e_topical.sas7bdat"
 # # check all variables are present
 required_vars=['SC_AGE_YEARS', 'SC_SEX', 'FPL_I1', 'BULLIED_R', 'MAKEFRIEND', 
                'K2Q31A', 'K2Q31B', 'K2Q31C', 'K2Q31D', 'ADDTREAT', 'FIPSST', 
-               'STRATUM', 'HHID']
+               'STRATUM', 'HHID', 'SC_RACE_R']
 # datasets = {'df1': top_2019, 'df2': top_2020, 'df3': top_2021, 'df4': top_2022, 'df5': top_2023}
 
 # for name, df in datasets.items():
@@ -111,9 +111,9 @@ def clean_data(file, output_path):
     df_clean.to_csv(output_path, index=False)
     return df_clean
 
-clean_data(top_2019, 'clean_2019')
-# clean_data(top_2019, 'covar_na_2019')
-# clean_data(top_2020, 'covar_na_2020')
-# clean_data(top_2021, 'covar_na_2021')
-# clean_data(top_2022, 'covar_na_2022')
-# clean_data(top_2023, 'covar_na_2023')
+# clean_data(top_2018, 'clean_2018')
+# clean_data(top_2019, 'clean_2019')
+# clean_data(top_2020, 'clean_2020')
+# clean_data(top_2021, 'clean_2021')
+# clean_data(top_2022, 'clean_2022')
+# clean_data(top_2023, 'clean_2023')

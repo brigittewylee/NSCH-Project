@@ -3,7 +3,6 @@
 # bivariate association between BULLIED and MAKEFRIEND.
 #*******************************************************************************
 
-
 library(pROC)
 
 top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)
