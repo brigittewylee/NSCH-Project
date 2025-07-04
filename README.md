@@ -9,6 +9,6 @@ behavioural therapy, medication).
 <img src="Images/ConceptModel.png" width="50%" />
 
 ## Dataset Access and Ethics Approval 
-Original datasets are publically accessible and can be viewed from the Child and Adolescent Health Measurement Initiative (CAHMI) Data Resource Center (DRC) (https://www.childhealthdata.org/browse) or, downloaded immediately from the United States Census Bureau (https://www.census.gov/programs-surveys/nsch/data/datasets.2023.html#list-tab-491554181) . 
+Original datasets are publically accessible and can be viewed through the Child and Adolescent Health Measurement Initiative (CAHMI) Data Resource Center (DRC) (https://www.childhealthdata.org/browse) or, downloaded from the United States Census Bureau (https://www.census.gov/programs-surveys/nsch/data/datasets.2023.html#list-tab-491554181) . 
 
-Approval of use for the DRC datasets was granted by the CAHMI Data Resource Center for Child and Adolescent Health. This project has also recieved Research and Ethics Board approval through the University of Waterloo (application #47462). All analyses are conducted in accordance with ethical guidelines and data use agreements. 
+Approval of use for the DRC datasets was granted by the CAHMI Data Resource Center for Child and Adolescent Health. This project has recieved Research and Ethics Board approval through the University of Waterloo (application #47462). All analyses are conducted in accordance with ethical guidelines and data use agreements. 
