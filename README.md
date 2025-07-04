@@ -4,7 +4,7 @@ This project analyzes data collected by the National Survey of Children’s Heal
 potential confounding variables including baseline outcome status, age, sex, family income, and neurobehavioral disorder management (i.e.,
 behavioural therapy, medication). 
 
-![Concept Model][Images/ConceptModel.png]
+![Concept Model](Images/ConceptModel.png)
 
 Original datasets are publically accessible and can be viewed from the Child and Adolescent Health Measurement Initiative (CAHMI) Data Resource Center (DRC) (https://www.childhealthdata.org/browse) or, downloaded immediately from the United States Census Bureau (https://www.census.gov/programs-surveys/nsch/data/datasets.2023.html#list-tab-491554181) . 
 
