@@ -1,3 +1,9 @@
+#*******************************************************************************
+# Fits data to logistic model and generates model summary, ORs, ROC/AUC for
+# bivariate association between BULLIED and MAKEFRIEND.
+#*******************************************************************************
+
+
 library(pROC)
 
 top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)

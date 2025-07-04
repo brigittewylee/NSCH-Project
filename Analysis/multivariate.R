@@ -1,3 +1,8 @@
+#*******************************************************************************
+# Fits data to logistic model and generates model summary, ORs, ROC/AUC for
+# association between BULLIED and MAKEFRIEND after accounting for confounders.
+#*******************************************************************************
+
 library(pROC)
 
 top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)
@@ -11,20 +16,51 @@ top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
 fit_glm <- function(df, year = "Unknown") {
   factored_df <- within (df, {BULLIED = as.factor(BULLIED)
                               MAKEFRIEND = as.factor(MAKEFRIEND)})
-  glmodel <- glm(BULLIED ~ MAKEFRIEND SEX , family = binomial, data = factored_df)
+  glmodel <- glm(BULLIED ~ MAKEFRIEND + SEX + INCOME + ADHD_MEDICATION +
+                   ADHD_BT,
+                 family = binomial, data = factored_df)
+
+coefs <- summary(glmodel)$coefficients
+  beta_val <- coefs[-1, 1]
+  std_errors <- coefs[-1, 2]
+
+  lower_ci <- beta_val - qnorm(0.975) * std_errors
+  upper_ci <- beta_val + qnorm(0.975) * std_errors
+  CI_table <- data.frame(
+    CI_Lower = lower_ci,
+    CI_Upper = upper_ci
+  )
+
+  OR <- exp(beta_val)
+  OR_lower <- exp(lower_ci)
+  OR_upper <- exp(upper_ci)
+  OR_table <- data.frame(
+    Beta_val = beta_val,
+    OR = OR,
+    CI_Lower = OR_lower,
+    CI_Upper = OR_upper
+  )
 
   prediction <- predict(glmodel, factored_df, type = "response")
 
   roc_object <- roc(factored_df$BULLIED, prediction)
   auc_value <- auc(roc_object)
 
-
-  print(paste("Logistic Regression Model of", year, "data"))
+  cat("Logistic Regression Model of", year, "data\n\n")
   print(with(factored_df, table(BULLIED, MAKEFRIEND)))
+  cat("\nModel Summary:\n")
   print(summary(glmodel))
-  plot(roc_object)
+
+  cat("\nLog-odds 95% Confidence Intervals:\n")
+  print(CI_table)
+
+  cat("\nOdds Ratios (OR) with 95% Confidence Intervals:\n")
+  print(OR_table)
+
+  plot(roc_object, main = paste("ROC Curve", year))
   print(auc_value)
-  # saveRDS(glm1, file = paste0("glm_model_", year, ".rds"))
+
+  cat("===================================================\n\n")
 }
 
 fit_glm(top_2018, 2018)
