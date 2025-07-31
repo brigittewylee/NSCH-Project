@@ -70,8 +70,8 @@ fit_glm <- function(df, year = "Unknown") {
 }
 
 fit_glm(top_2018, 2018)
-# fit_glm(top_2019, 2019)
-# fit_glm(top_2020, 2020)
-# fit_glm(top_2021, 2021)
-# fit_glm(top_2022, 2022)
-# fit_glm(top_2023, 2023)
+fit_glm(top_2019, 2019)
+fit_glm(top_2020, 2020)
+fit_glm(top_2021, 2021)
+fit_glm(top_2022, 2022)
+fit_glm(top_2023, 2023)

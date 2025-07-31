@@ -14,13 +14,15 @@ top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
 
 
 fit_glm <- function(df, year = "Unknown") {
-  factored_df <- within (df, {BULLIED = as.factor(BULLIED)
-                              MAKEFRIEND = as.factor(MAKEFRIEND)})
+
+  factored_df <- within(df, {BULLIED <- as.factor(BULLIED)
+                             MAKEFRIEND <- as.factor(MAKEFRIEND)})
+
   glmodel <- glm(BULLIED ~ MAKEFRIEND + SEX + INCOME + ADHD_MEDICATION +
                    ADHD_BT + MAKEFRIEND * ADHD_SEVERITY,
                  family = binomial, data = factored_df)
 
-coefs <- summary(glmodel)$coefficients
+  coefs <- summary(glmodel)$coefficients
   beta_val <- coefs[-1, 1]
   std_errors <- coefs[-1, 2]
 
@@ -64,8 +66,8 @@ coefs <- summary(glmodel)$coefficients
 }
 
 fit_glm(top_2018, 2018)
-fit_glm(top_2019, 2019)
-fit_glm(top_2020, 2020)
-fit_glm(top_2021, 2021)
-fit_glm(top_2022, 2022)
-fit_glm(top_2023, 2023)
+# fit_glm(top_2019, 2019)
+# fit_glm(top_2020, 2020)
+# fit_glm(top_2021, 2021)
+# fit_glm(top_2022, 2022)
+# fit_glm(top_2023, 2023)
