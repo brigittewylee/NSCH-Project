@@ -60,6 +60,8 @@ fit_glm <- function(df, year = "Unknown") {
 
   print(gplot)
 
+  print(summary(glmodel))
+
   cat("===================================================\n\n")
 }
 
