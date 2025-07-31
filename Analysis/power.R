@@ -15,5 +15,4 @@ run_proc_freq <- function(df) {
 
 print(with(df, prop.table(table(ADHD_SEVERITY, BULLIED), 1)))
 
-
 run_proc_freq(df)
