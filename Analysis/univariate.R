@@ -1,3 +1,7 @@
+#*******************************************************************************
+# Generates descriptive stats for each variable in target age group (12-17).
+#*******************************************************************************
+
 library(procs)
 
 top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)

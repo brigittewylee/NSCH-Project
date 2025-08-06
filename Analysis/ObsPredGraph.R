@@ -10,7 +10,7 @@ top_2022 <- read.csv("CleanedData(Num)/clean_2022n", header = TRUE)
 top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
 
 obs_pred <- function(df, year = "Unknown") {
-  factored_df <- within(df, {BULLIED = as.factor(BULLIED) 
+  factored_df <- within(df, {BULLIED = as.factor(BULLIED)
                              MAKEFRIEND = as.factor(MAKEFRIEND)})
 
   glmodel <- glm(BULLIED ~ MAKEFRIEND + SEX + INCOME + ADHD_MEDICATION +

@@ -12,6 +12,7 @@ top_2021 <- read.csv("CleanedData(Num)/clean_2021n", header = TRUE)
 top_2022 <- read.csv("CleanedData(Num)/clean_2022n", header = TRUE)
 top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
 
+
 run_proc_freq <- function(df, year = "Unknown") {
   res <- proc_freq(df,
                    tables = MAKEFRIEND * BULLIED,
@@ -22,9 +23,9 @@ run_proc_freq <- function(df, year = "Unknown") {
   print(res)
 }
 
-run_proc_freq(top_2018, year = "2018")
-run_proc_freq(top_2019, year = "2019")
-run_proc_freq(top_2020, year = "2020")
-run_proc_freq(top_2021, year = "2021")
-run_proc_freq(top_2022, year = "2022")
-run_proc_freq(top_2023, year = "2023")
+# run_proc_freq(top_2018, year = "2018")
+# run_proc_freq(top_2019, year = "2019")
+# run_proc_freq(top_2020, year = "2020")
+# run_proc_freq(top_2021, year = "2021")
+# run_proc_freq(top_2022, year = "2022")
+# run_proc_freq(top_2023, year = "2023")
