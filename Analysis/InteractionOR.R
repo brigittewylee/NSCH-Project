@@ -1,3 +1,8 @@
+#*******************************************************************************
+# Fits data to logistic model for the association between BULLIED and MAKEFRIEND
+# after accounting for confounders and interaction term (ADHD_SEV). Generates
+# OR [comparision/////test].
+#*******************************************************************************
 
 top_2018 <- read.csv("SeverityData/clean_2018", header = TRUE)
 top_2019 <- read.csv("SeverityData/clean_2019", header = TRUE)
@@ -5,7 +10,7 @@ top_2020 <- read.csv("SeverityData/clean_2020", header = TRUE)
 top_2021 <- read.csv("SeverityData/clean_2021", header = TRUE)
 top_2022 <- read.csv("SeverityData/clean_2022", header = TRUE)
 top_2023 <- read.csv("SeverityData/clean_2023", header = TRUE)
-
+all_yrs <- read.csv("SeverityData/all_yrs_sev")
 
 
 OR_table <- function(data_year) {
@@ -62,6 +67,8 @@ OR_table <- function(data_year) {
 # OR_table(top_2018)
 # OR_table(top_2019)
 # OR_table(top_2020)
-OR_table(top_2021)
+# OR_table(top_2021)
 # OR_table(top_2022)
 # OR_table(top_2023)
+OR_table(all_yrs)
+
