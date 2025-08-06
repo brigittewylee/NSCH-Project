@@ -86,7 +86,7 @@ def clean_data(file, output_path):
         'ADHD_DIAGNOSIS':np.select(diagnosis_cond, diagnosis_choice , default=np.nan),
         'ADHD_SEVERITY': df_voi['K2Q31C'].map({1: 0, 
                                                2: 1, 
-                                               3: 2}).fillna(np.nan),
+                                               3: 1}).fillna(np.nan),
         'ADHD_MEDICATION': df_voi['K2Q31D'].map({1: 1, 
                                                  2: 0}).fillna(np.nan),
         'ADHD_BT': df_voi['ADDTREAT'].map({1: 1, 
@@ -111,9 +111,9 @@ def clean_data(file, output_path):
     df_clean.to_csv(output_path, index=False)
     return df_clean
 
-# clean_data(top_2018, 'clean_2018')
-# clean_data(top_2019, 'clean_2019')
-# clean_data(top_2020, 'clean_2020')
-# clean_data(top_2021, 'clean_2021')
-# clean_data(top_2022, 'clean_2022')
-# clean_data(top_2023, 'clean_2023')
+clean_data(top_2018, 'clean_2018')
+clean_data(top_2019, 'clean_2019')
+clean_data(top_2020, 'clean_2020')
+clean_data(top_2021, 'clean_2021')
+clean_data(top_2022, 'clean_2022')
+clean_data(top_2023, 'clean_2023')
