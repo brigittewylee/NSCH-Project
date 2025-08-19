@@ -9,9 +9,9 @@ top_2021 = "NSCHData/2021/nsch_2021e_topical.sas7bdat"
 top_2022 = "NSCHData/2022/nsch_2022e_topical.sas7bdat"
 top_2023 = "NSCHData/2023/nsch_2023e_topical.sas7bdat"
 
-# # check all variables are present
+# check all variables are present
 required_vars=['SC_AGE_YEARS', 'SC_SEX', 'FPL_I1', 'BULLIED_R', 'MAKEFRIEND', 
-               'K2Q31A', 'K2Q31B', 'K2Q31C', 'K2Q31D', 'ADDTREAT', 'FIPSST', 
+               'K2Q31B', 'K2Q31C', 'K2Q31D', 'ADDTREAT', 'FIPSST', 
                'STRATUM', 'HHID', 'SC_RACE_R']
 # datasets = {'df1': top_2019, 'df2': top_2020, 'df3': top_2021, 'df4': top_2022, 'df5': top_2023}
 
@@ -24,7 +24,7 @@ required_vars=['SC_AGE_YEARS', 'SC_SEX', 'FPL_I1', 'BULLIED_R', 'MAKEFRIEND',
 #         print(f"{name} has all required variables.")
 
 
-missing_vals = [999, -999, np.inf, -np.inf, '.M', '.A', '.B', '.C']
+missing_vals = [999, -999, np.inf, '.M', '.A', '.B', '.C']
 
 def clean_data(file, output_path):
     # isolate voi
@@ -33,15 +33,11 @@ def clean_data(file, output_path):
 
     df_na = df_var.replace(missing_vals, np.nan)
     
-    df_filtered = df_na[(df_na['SC_AGE_YEARS'].between(12, 17)) &
-                        (df_na['K2Q31A'] == 1) &
-                        (df_na['K2Q31B'] == 1) &
-                        (df_na['K2Q31C'].isin([1, 2, 3]))]
-    
-    df_voi = df_filtered.dropna()
-    # df_voi = df_filtered.dropna(subset=['SC_AGE_YEARS', 'SC_SEX', 'FPL_I1', 
-    #            'K2Q31A', 'K2Q31B', 'K2Q31C', 'K2Q31D', 'ADDTREAT', 'FIPSST', 
-    #            'STRATUM', 'HHID'])
+    df_filtered = df_na[(df_na['SC_AGE_YEARS'].between(12, 17))]
+
+    df_voi = df_filtered.dropna(subset=['SC_AGE_YEARS', 'SC_SEX', 'FPL_I1', 
+               'K2Q31B', 'K2Q31C', 'K2Q31D', 'ADDTREAT', 'FIPSST', 
+               'STRATUM', 'HHID', 'BULLIED_R', 'MAKEFRIEND'])
     
     # reclassification
     income_cond = [(df_voi['FPL_I1'] > 0) & (df_voi['FPL_I1'] <= 199),
@@ -54,10 +50,9 @@ def clean_data(file, output_path):
                     df_voi['BULLIED_R'] == 1]
     bullied_choice = [1, 0]
 
-    diagnosis_cond = [df_voi['K2Q31A'] == 2,
-                      (df_voi['K2Q31A'] == 1) & (df_voi['K2Q31B'] == 2),
-                      (df_voi['K2Q31A'] == 1) & (df_voi['K2Q31B'] == 1)]
-    diagnosis_choice = [0, 0, 1]
+    diagnosis_cond = [df_voi['K2Q31B'] == 2,
+                      df_voi['K2Q31B'] == 1]
+    diagnosis_choice = [0, 1]
 
     # income_cond = [(df_voi['FPL_I1'] > 0) & (df_voi['FPL_I1'] <= 199),
     #                (df_voi['FPL_I1'] >= 200) & (df_voi['FPL_I1'] <= 299),

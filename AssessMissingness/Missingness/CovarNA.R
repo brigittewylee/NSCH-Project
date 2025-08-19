@@ -7,12 +7,12 @@
 library(procs)
 
 # load datasets
-raw_2018 <- read.csv("CleanedNACovar(Num)/covar_na_2018", header = TRUE)
-raw_2019 <- read.csv("CleanedNACovar(Num)/covar_na_2019", header = TRUE)
-raw_2020 <- read.csv("CleanedNACovar(Num)/covar_na_2020", header = TRUE)
-raw_2021 <- read.csv("CleanedNACovar(Num)/covar_na_2021", header = TRUE)
-raw_2022 <- read.csv("CleanedNACovar(Num)/covar_na_2022", header = TRUE)
-raw_2023 <- read.csv("CleanedNACovar(Num)/covar_na_2023", header = TRUE)
+raw_2018 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2018", header = TRUE)
+raw_2019 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2019", header = TRUE)
+raw_2020 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2020", header = TRUE)
+raw_2021 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2021", header = TRUE)
+raw_2022 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2022", header = TRUE)
+raw_2023 <- read.csv("AssessMissingness/CleanedNACovar(Num)/covar_na_2023", header = TRUE)
 
 # Indicators on missing values in BULLIED/MAKEFRIEND columns
 raw_2018$NA_BULLIED <- ifelse(is.na(raw_2018$BULLIED), 1, 0)

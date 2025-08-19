@@ -10,12 +10,7 @@ top_2020 <- read.csv("SeverityData/clean_2020", header = TRUE)
 top_2021 <- read.csv("SeverityData/clean_2021", header = TRUE)
 top_2022 <- read.csv("SeverityData/clean_2022", header = TRUE)
 top_2023 <- read.csv("SeverityData/clean_2023", header = TRUE)
-
-all_yrs <- read.csv("SeverityData/all_yrs_sev")
-pre <- read.csv("SeverityData/peak_covid")
-peak <- read.csv("SeverityData/post_covid")
-post <- read.csv("SeverityData/pre_covid")
-
+all_yrs <- read.csv("all_yrs_sev")
 
 CI_table <- function(data_year) {
   data_year$BULLIED <- as.factor(data_year$BULLIED)
@@ -31,11 +26,11 @@ CI_table <- function(data_year) {
                            "MAKEFRIEND2:ADHD_SEV1")]
   raw_cov_matrix <- vcov(glmodel)
   vcov_matrix <- raw_cov_matrix[c("(Intercept)", "MAKEFRIEND1", "MAKEFRIEND2",
-                                 "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",
-                                 "MAKEFRIEND2:ADHD_SEV1"),
-                               c("(Intercept)", "MAKEFRIEND1", "MAKEFRIEND2",
-                                 "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",
-                                 "MAKEFRIEND2:ADHD_SEV1")]
+                                  "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",
+                                  "MAKEFRIEND2:ADHD_SEV1"),
+                                c("(Intercept)", "MAKEFRIEND1", "MAKEFRIEND2",
+                                  "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",
+                                  "MAKEFRIEND2:ADHD_SEV1")]
   combos <- expand.grid(MAKEFRIEND = c(0:2), ADHD_SEV = c(0:1))
 
   # design vectors for all combos
@@ -50,7 +45,7 @@ CI_table <- function(data_year) {
     )
   }
 
-  # populate matrix with dv 
+  # populate matrix with dv
   design_matrix <- t(apply(combos, 1, function(row) {
     make_design_vector(row["MAKEFRIEND"], row["ADHD_SEV"])
   }))
@@ -108,16 +103,11 @@ CI_table <- function(data_year) {
   print(CI)
   print(odds_ratio)
   print(summary(glmodel))
-
 }
 
-CI_table(top_2018)
-CI_table(top_2019)
-CI_table(top_2020)
-CI_table(top_2021)
-CI_table(top_2022)
-CI_table(top_2023)
-# CI_table(all_yrs)
-# CI_table(pre)
-# CI_table(peak)
-# CI_table(post)
+CI_table(all_yrs)
+# CI_table(top_2019)
+# CI_table(top_2020)
+# CI_table(top_2021)
+# CI_table(top_2022)
+# CI_table(top_2023)

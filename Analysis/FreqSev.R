@@ -5,16 +5,12 @@
 
 library(procs)
 
-top_2018 <- read.csv("SeverityData/clean_2018", header = TRUE)
-top_2019 <- read.csv("SeverityData/clean_2019", header = TRUE)
-top_2020 <- read.csv("SeverityData/clean_2020", header = TRUE)
-top_2021 <- read.csv("SeverityData/clean_2021", header = TRUE)
-top_2022 <- read.csv("SeverityData/clean_2022", header = TRUE)
-top_2023 <- read.csv("SeverityData/clean_2023", header = TRUE)
-all_yrs <- read.csv("SeverityData/all_yrs_sev")
-pre <- read.csv("SeverityData/peak_covid")
-peak <- read.csv("SeverityData/post_covid")
-post <- read.csv("SeverityData/pre_covid")
+top_2018 <- read.csv("CleanedData(Num)/clean_2018", header = TRUE)
+top_2019 <- read.csv("CleanedData(Num)/clean_2019", header = TRUE)
+top_2020 <- read.csv("CleanedData(Num)/clean_2020", header = TRUE)
+top_2021 <- read.csv("CleanedData(Num)/clean_2021", header = TRUE)
+top_2022 <- read.csv("CleanedData(Num)/clean_2022", header = TRUE)
+top_2023 <- read.csv("CleanedData(Num)/clean_2023", header = TRUE)
 
 
 run_proc_freq <- function(df, year) {
@@ -25,18 +21,12 @@ run_proc_freq <- function(df, year) {
 
   print(res)
   print(with(df, prop.table(table(ADHD_SEVERITY, BULLIED), 1)))
-
 }
 
 
-# run_proc_freq(top_2018, "2018")
-# run_proc_freq(top_2019, "2019")
-# run_proc_freq(top_2020, "2020")
-# run_proc_freq(top_2021, "2021")
-# run_proc_freq(top_2022, "2022")
-# run_proc_freq(top_2023, "2023")
-
-run_proc_freq(all_yrs, "all years")
-run_proc_freq(pre, "Pre-Covid: 2018-2019")
-run_proc_freq(peak, "Peak-Covid: 2020-2021")
-run_proc_freq(post, "Post-Covid: 2022-2023")
+run_proc_freq(top_2018, "2018")
+run_proc_freq(top_2019, "2019")
+run_proc_freq(top_2020, "2020")
+run_proc_freq(top_2021, "2021")
+run_proc_freq(top_2022, "2022")
+run_proc_freq(top_2023, "2023")

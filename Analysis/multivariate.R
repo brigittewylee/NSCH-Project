@@ -4,19 +4,20 @@
 #*******************************************************************************
 
 library(pROC)
+library(car)
 
-top_2018 <- read.csv("CleanedData(Num)/clean_2018n", header = TRUE)
-top_2019 <- read.csv("CleanedData(Num)/clean_2019n", header = TRUE)
-top_2020 <- read.csv("CleanedData(Num)/clean_2020n", header = TRUE)
-top_2021 <- read.csv("CleanedData(Num)/clean_2021n", header = TRUE)
-top_2022 <- read.csv("CleanedData(Num)/clean_2022n", header = TRUE)
-top_2023 <- read.csv("CleanedData(Num)/clean_2023n", header = TRUE)
+top_2018 <- read.csv("CleanedData(Num)/clean_2018", header = TRUE)
+top_2019 <- read.csv("CleanedData(Num)/clean_2019", header = TRUE)
+top_2020 <- read.csv("CleanedData(Num)/clean_2020", header = TRUE)
+top_2021 <- read.csv("CleanedData(Num)/clean_2021", header = TRUE)
+top_2022 <- read.csv("CleanedData(Num)/clean_2022", header = TRUE)
+top_2023 <- read.csv("CleanedData(Num)/clean_2023", header = TRUE)
 
 fit_glm <- function(df, year = "Unknown") {
   factored_df <- within(df, {BULLIED = as.factor(BULLIED)
                               MAKEFRIEND = as.factor(MAKEFRIEND)})
   glmodel <- glm(BULLIED ~ MAKEFRIEND + SEX + INCOME + ADHD_MEDICATION +
-                   ADHD_BT,
+                   ADHD_BT + ADHD_SEVERITY,
                  family = binomial, data = factored_df)
 
   coefs <- summary(glmodel)$coefficients
@@ -44,30 +45,34 @@ fit_glm <- function(df, year = "Unknown") {
   roc_object <- roc(factored_df$BULLIED, prediction)
   auc_value <- auc(roc_object)
 
-  cat("Logistic Regression Model of", year, "data\n\n")
-  print(with(factored_df, table(BULLIED, MAKEFRIEND)))
-  cat("\nModel Summary:\n")
-  print(summary(glmodel))
+  # vif_values <- vif(glmodel)
+  # print(vif_values)
 
-  cat("\nLog-odds 95% Confidence Intervals:\n")
-  print(CI_table)
+  # cat("Logistic Regression Model of", year, "data\n\n")
+  # print(with(factored_df, table(BULLIED, MAKEFRIEND)))
+  # cat("\nModel Summary:\n")
+  # print(summary(glmodel))
 
+  # cat("\nLog-odds 95% Confidence Intervals:\n")
+  # print(CI_table)
+
+  print(year)
   cat("\nOdds Ratios (OR) with 95% Confidence Intervals:\n")
-  print(OR_table)
+  print(format(OR_table, digits = 3, nsmall = 3))
 
-  plot(roc_object, main = paste("ROC Curve", year))
-  print(auc_value)
 
-  print(gplot)
+  # plot(roc_object, main = paste("ROC Curve", year))
+  # print(auc_value)
 
-  print(summary(glmodel))
+  # print(summary(glmodel))
 
   cat("===================================================\n\n")
 }
 
-# fit_glm(top_2018, 2018)
-# fit_glm(top_2019, 2019)
-# fit_glm(top_2020, 2020)
+
+fit_glm(top_2018, 2018)
+fit_glm(top_2019, 2019)
+fit_glm(top_2020, 2020)
 fit_glm(top_2021, 2021)
-# fit_glm(top_2022, 2022)
-# fit_glm(top_2023, 2023)
+fit_glm(top_2022, 2022)
+fit_glm(top_2023, 2023)
