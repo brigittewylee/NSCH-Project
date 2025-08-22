@@ -60,7 +60,6 @@ fit_glm <- function(df, year = "Unknown") {
   cat("\nOdds Ratios (OR) with 95% Confidence Intervals:\n")
   print(format(OR_table, digits = 3, nsmall = 3))
 
-
   # plot(roc_object, main = paste("ROC Curve", year))
   # print(auc_value)
 

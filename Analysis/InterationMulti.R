@@ -4,14 +4,14 @@
 # CI and OR for all combinations of ADHD_SEV and MFRIEND.
 #*******************************************************************************
 
-top_2018 <- read.csv("SeverityData/clean_2018", header = TRUE)
-top_2019 <- read.csv("SeverityData/clean_2019", header = TRUE)
-top_2020 <- read.csv("SeverityData/clean_2020", header = TRUE)
-top_2021 <- read.csv("SeverityData/clean_2021", header = TRUE)
-top_2022 <- read.csv("SeverityData/clean_2022", header = TRUE)
-top_2023 <- read.csv("SeverityData/clean_2023", header = TRUE)
-all_yrs <- read.csv("all_yrs_sev")
+top_2018 <- read.csv("CleanedData(Num)/clean_2018", header = TRUE)
+top_2019 <- read.csv("CleanedData(Num)/clean_2019", header = TRUE)
+top_2020 <- read.csv("CleanedData(Num)/clean_2020", header = TRUE)
+top_2021 <- read.csv("CleanedData(Num)/clean_2021", header = TRUE)
+top_2022 <- read.csv("CleanedData(Num)/clean_2022", header = TRUE)
+top_2023 <- read.csv("CleanedData(Num)/clean_2023", header = TRUE)
 
+# all_yrs <- read.csv("all_yrs_sev")
 CI_table <- function(data_year) {
   data_year$BULLIED <- as.factor(data_year$BULLIED)
   data_year$MAKEFRIEND <- as.factor(data_year$MAKEFRIEND)
@@ -24,6 +24,7 @@ CI_table <- function(data_year) {
   coefs <- coef(glmodel)[c("(Intercept)", "MAKEFRIEND1", "MAKEFRIEND2",
                            "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",
                            "MAKEFRIEND2:ADHD_SEV1")]
+
   raw_cov_matrix <- vcov(glmodel)
   vcov_matrix <- raw_cov_matrix[c("(Intercept)", "MAKEFRIEND1", "MAKEFRIEND2",
                                   "ADHD_SEV1", "MAKEFRIEND1:ADHD_SEV1",

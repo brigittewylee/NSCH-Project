@@ -17,18 +17,23 @@ def ADHD_prevalence (df):
     df_voi = df_na.dropna(subset=['K2Q31B'])
 
     counts = df_voi['K2Q31B'].value_counts()
-    print(counts)
+    # print(counts)
 
-    total = len(df_voi['K2Q31B'])
-    print(total)
+    # total = len(df_voi['K2Q31B'])
+    # print(total)
 
-    prev = counts.get(1.0, 0) / total * 100
-    print(f"Prevalence: {prev:.1f}")
+    # prev = counts.get(1.0, 0) / total * 100
+    # print(f"Prevalence: {prev:.1f}")
+
+    survey_total = len(df_na)
+    survey_prev = counts.get(1.0, 0) / survey_total * 100
+
+    print(f"Total Prevalence: {counts.get(1.0,0)}/{survey_total} ({survey_prev:.1f})")
 
 
 ADHD_prevalence(top_2018)
-# ADHD_prevalence(top_2019)
-# ADHD_prevalence(top_2020)
-# ADHD_prevalence(top_2021)
-# ADHD_prevalence(top_2022)
-# ADHD_prevalence(top_2023)
+ADHD_prevalence(top_2019)
+ADHD_prevalence(top_2020)
+ADHD_prevalence(top_2021)
+ADHD_prevalence(top_2022)
+ADHD_prevalence(top_2023)

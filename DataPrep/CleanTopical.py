@@ -73,6 +73,7 @@ def clean_data(file, output_path):
         'AGE': df_voi['SC_AGE_YEARS'],
         'SEX': df_voi['SC_SEX'].map({1: 0, 
                                      2: 1}).fillna(np.nan),
+        # 0 = male, 1 = female
         'INCOME': np.select(income_cond, income_choice, default=np.nan), 
         'BULLIED': np.select(bullied_cond, bullied_choice , default=np.nan),
         'MAKEFRIEND': df_voi['MAKEFRIEND'].map({1: 0, 
@@ -86,6 +87,7 @@ def clean_data(file, output_path):
                                                  2: 0}).fillna(np.nan),
         'ADHD_BT': df_voi['ADDTREAT'].map({1: 1, 
                                            2: 0}).fillna(np.nan)
+                                           
 
         # 'SEX': df_voi['SC_SEX'].map({1: 'Male', 
         #                              2: 'Female'}).fillna(np.nan),
